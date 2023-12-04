@@ -7,6 +7,7 @@
   font-family: "Nunito Sans";
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  user-select: none;
 }
 html {
   -ms-text-size-adjust: 100%;
@@ -61,6 +62,7 @@ a {
 }
 .header__logo img {
   margin-right: 15px;
+  pointer-events: none;
 }
 .header__logo h1 {
   color: #181818;
@@ -100,6 +102,28 @@ a {
 .button svg {
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
+}
+.button_go_back {
+  display: inline-block;
+  background-color: #fe5f1e;
+  border-radius: 30px;
+  padding: 16px;
+  width: 200px;
+  min-width: 100px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  border: 1px solid transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
 }
 .button:hover {
   background-color: #f24701;
@@ -289,13 +313,13 @@ a {
 .pizza-block {
   width: 280px;
   text-align: center;
-  margin-bottom: 65px;
+  margin: 0 auto;
+  margin-bottom: 40px;
 }
-.pizza-block:not(:nth-of-type(4n)) {
-  margin-right: 35px;
-}
+
 .pizza-block__image {
   width: 260px;
+  pointer-events: none;
 }
 .pizza-block__title {
   font-size: 20px;
@@ -383,14 +407,10 @@ body {
   margin: 35px 0;
 }
 .content__items {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 10px;
 }
 .content__top {
   display: -webkit-box;
@@ -659,6 +679,9 @@ body {
   width: 560px;
   text-align: center;
 }
+.cart .content__items {
+  display: block;
+}
 .cart--empty h2 {
   font-size: 32px;
   margin-bottom: 10px;
@@ -684,4 +707,42 @@ body {
   margin: 0 auto;
   font-weight: 600;
   font-size: 18px;
+}
+
+.notfoundmessage {
+  font-family: "'0xProto'";
+  font-size: "150px";
+  margin: "50px 0";
+}
+
+@media (max-width: 1300px) {
+  .container .content__items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .content__top {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 960px) {
+  .container .content__items {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .categories {
+    max-width: 500px;
+    padding-bottom: 15px;
+    overflow: scroll;
+  }
+}
+
+@media (max-width: 1040px) {
+  .cart .cart__item {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 25px;
+  }
+  .cart__item-info {
+    text-align: center;
+  }
 }

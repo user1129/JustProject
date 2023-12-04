@@ -1,5 +1,5 @@
 import React from "react";
-import { PizzaType } from "../types/PizzaType";
+import { PizzaType } from "../@types/types";
 import "../../styles/app.css";
 const Pizza: React.FC<PizzaType> = ({
   title,
@@ -9,6 +9,10 @@ const Pizza: React.FC<PizzaType> = ({
   types,
 }) => {
   const types_: string[] = ["тонкое", "традиционное"];
+
+  const [selectedType, setType] = React.useState<number>(0);
+  const [selectedSize, setSize] = React.useState<number>(0);
+
   return (
     <>
       <div className="pizza-block">
@@ -17,12 +21,28 @@ const Pizza: React.FC<PizzaType> = ({
         <div className="pizza-block__selector">
           <ul>
             {types.map((value) => {
-              return <li key={value}>{types_[value]}</li>;
+              return (
+                <li
+                  className={selectedType === value ? "active" : ""}
+                  onClick={() => setType(value)}
+                  key={value}
+                >
+                  {types_[value]}
+                </li>
+              );
             })}
           </ul>
           <ul>
             {sizes.map((value, index) => {
-              return <li key={index}>{value} см.</li>;
+              return (
+                <li
+                  className={selectedSize === index ? "active" : ""}
+                  onClick={() => setSize(index)}
+                  key={index}
+                >
+                  {value} см.
+                </li>
+              );
             })}
           </ul>
         </div>
