@@ -1,12 +1,17 @@
 import React from "react";
-import "../../styles/app.css";
+import "../styles/app.css";
+import { useDispatch } from "react-redux";
+import { change_sort } from "../redux/slices/FilterSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../@types/types";
+
 export const Sort = () => {
   const sort_types: string[] = ["популярности", "цене", "алфавиту"];
-  const [selectedSort, setSort] = React.useState<number>(0);
   const [open_popup, setPopup] = React.useState<boolean>(false);
-
-  const change_sort = (index: number): void => {
-    setSort(index);
+  const selected_sort = useSelector((state: RootState) => state.filter.sort);
+  const dispatch = useDispatch();
+  const change_sorting = (index: number): void => {
+    dispatch(change_sort(index));
     setPopup(false);
   };
 
@@ -28,7 +33,7 @@ export const Sort = () => {
           </svg>
           <b>Сортировка по:</b>
           <span onClick={() => setPopup(!open_popup)}>
-            {sort_types[selectedSort]}
+            {sort_types[selected_sort]}
           </span>
         </div>
         {open_popup && (
@@ -37,9 +42,9 @@ export const Sort = () => {
               {sort_types.map((value, index) => {
                 return (
                   <li
-                    className={selectedSort === index ? "active" : ""}
+                    className={selected_sort === index ? "active" : ""}
                     key={index}
-                    onClick={() => change_sort(index)}
+                    onClick={() => change_sorting(index)}
                   >
                     {value}
                   </li>

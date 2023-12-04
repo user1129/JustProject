@@ -1,18 +1,20 @@
-import { Slice, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Filter } from "../../@types/types";
 
-const FilterSlice: Slice<Filter> = createSlice({
-  name: "basket",
-  initialState: {
-    sort: "",
-    category: "",
-  },
+const initialState: Filter = {
+  sort: 0,
+  category: 0,
+};
+
+const FilterSlice = createSlice({
+  name: "filter",
+  initialState,
   reducers: {
-    change_sort: (state, action) => {
-      state.sort = action.payload;
+    change_sort: (state, action: PayloadAction<number>) => {
+      state.sort = Number(action.payload);
     },
-    change_category: (state, action) => {
-      state.category = action.payload;
+    change_category: (state, action: PayloadAction<number>) => {
+      state.category = Number(action.payload);
     },
   },
 });

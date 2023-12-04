@@ -1,27 +1,18 @@
-import React from "react";
-import "../../styles/app.css";
+import "../styles/app.css";
 import Category from "../components/Category";
 import Header from "../components/Header";
 import Sort from "../components/Sort";
-import { PizzaType } from "../@types/types";
-import axios from "axios";
+
 import Pizza from "../components/Pizza";
 import Skeleton from "../components/Skeleton";
+import { HomeProp, PizzaType, RootState } from "../@types/types";
+import { useSelector } from "react-redux";
 
-function App() {
-  const [pizzas, setPizzas] = React.useState<PizzaType[]>([]);
-  const [isLoading, setLoading] = React.useState<boolean>(true);
+const Home: React.FC<HomeProp> = ({ load = false }) => {
+  const pizzas: PizzaType[] = useSelector(
+    (state: RootState) => state.pizza.pizzas
+  );
 
-  React.useEffect(() => {
-    async function getPizzas() {
-      const pizza = await axios.get(
-        "https://654cf22b77200d6ba859c12f.mockapi.io/pizzas"
-      );
-      setPizzas(pizza.data);
-      setLoading(false);
-    }
-    getPizzas();
-  }, []);
   return (
     <>
       <div className="wrapper">
@@ -34,7 +25,7 @@ function App() {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-              {isLoading
+              {load
                 ? [...new Array(10)].map((_, index) => {
                     return <Skeleton key={index} />;
                   })
@@ -48,6 +39,6 @@ function App() {
       ;
     </>
   );
-}
+};
 
-export default App;
+export default Home;

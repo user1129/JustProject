@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../../styles/app.css";
+import "../styles/app.css";
 import Header from "../components/Header";
 const EmptyBasket = () => {
   return (

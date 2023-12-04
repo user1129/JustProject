@@ -1,5 +1,8 @@
-import React from "react";
-import "../../styles/app.css";
+import "../styles/app.css";
+import { useSelector } from "react-redux";
+import { RootState } from "../@types/types";
+import { useDispatch } from "react-redux";
+import { change_category } from "../redux/slices/FilterSlice";
 const Category = () => {
   const categories: string[] = [
     "Все",
@@ -10,7 +13,10 @@ const Category = () => {
     "Закрытые",
   ];
 
-  const [selectedCategory, setSelectedCategory] = React.useState<number>(0);
+  const selected_category = useSelector(
+    (state: RootState) => state.filter.category
+  );
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -19,9 +25,9 @@ const Category = () => {
           {categories.map((value, index) => {
             return (
               <li
-                className={selectedCategory === index ? "active" : ""}
+                className={selected_category === index ? "active" : ""}
                 key={index}
-                onClick={() => setSelectedCategory(index)}
+                onClick={() => dispatch(change_category(index))}
               >
                 {value}
               </li>

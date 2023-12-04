@@ -1,6 +1,6 @@
 import React from "react";
 import { PizzaType } from "../@types/types";
-import "../../styles/app.css";
+import "../styles/app.css";
 const Pizza: React.FC<PizzaType> = ({
   title,
   imageUrl,

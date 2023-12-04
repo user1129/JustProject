@@ -9,6 +9,15 @@ export interface PizzaType {
   category: number;
 }
 
+export interface PizzaState {
+  pizzas: PizzaType[];
+}
+
+export interface RootState {
+  pizza: PizzaState;
+  filter: Filter;
+}
+
 export interface CartItemType {}
 
 export interface HeaderType {
@@ -16,10 +25,14 @@ export interface HeaderType {
 }
 
 export interface Filter {
-  sort: string;
-  category: string;
+  sort: number;
+  category: number;
 }
 
 export interface PizzaSliceType {
   pizza: PizzaType[];
+}
+
+export interface HomeProp {
+  load: boolean;
 }
