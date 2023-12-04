@@ -1,11 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@300&family=Nunito+Sans:opsz,wght@6..12,300&family=Nunito:wght@300&family=Sometype+Mono&family=Varela+Round&family=Work+Sans:wght@300&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@300&family=Nunito+Sans:opsz,wght@6..12,300&family=Nunito:wght@300;400&family=Sometype+Mono&family=Varela+Round&family=Work+Sans:wght@300&display=swap");
 * {
   padding: 0;
   margin: 0;
   list-style: none;
   outline: none;
-  font-family: "Nunito";
+  font-family: "Nunito Sans";
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
