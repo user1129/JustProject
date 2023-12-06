@@ -1,3 +1,5 @@
+import { createAction } from "@reduxjs/toolkit";
+
 export interface PizzaType {
   id: number;
   imageUrl: string;
@@ -36,3 +38,10 @@ export interface PizzaSliceType {
 export interface HomeProp {
   load: boolean;
 }
+
+export interface FetchPizzaAction {
+  sortParam: string;
+  categoryParam: string;
+}
+
+export const DATA_FETCHER = createAction<FetchPizzaAction>("fetchPizza");
